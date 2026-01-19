@@ -23,19 +23,27 @@ header h1{color:#00ffe1;font-size:32px;text-shadow:0 0 20px #00ffe1}
 header p{opacity:.7;margin-top:8px}
 
 .stats{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-  gap:20px;max-width:900px;margin:auto;padding:20px
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:20px;
+  max-width:900px;
+  margin:40px auto;
+  padding:0 20px
 }
 .card{
   background:rgba(255,255,255,.04);
-  border-radius:20px;padding:25px;text-align:center;
+  border-radius:20px;
+  padding:25px;
+  text-align:center;
   box-shadow:0 0 30px rgba(0,255,255,.18)
 }
 .ring{
   width:95px;height:95px;border-radius:50%;
-  border:6px solid;display:flex;align-items:center;
-  justify-content:center;margin:auto auto 12px;
-  font-size:22px;font-weight:bold;text-shadow:0 0 12px currentColor
+  border:6px solid;
+  display:flex;align-items:center;justify-content:center;
+  margin:auto auto 12px;
+  font-size:22px;font-weight:bold;
+  text-shadow:0 0 12px currentColor
 }
 .green{border-color:#00ff9c;color:#00ff9c}
 .blue{border-color:#00b3ff;color:#00b3ff}
@@ -46,50 +54,48 @@ section{text-align:center;padding:60px 20px}
 section h2{color:#00ffe1;margin-bottom:25px}
 
 .projects{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;max-width:900px;margin:auto
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+  max-width:900px;
+  margin:auto
 }
 .project{
   background:rgba(255,255,255,.04);
-  border-radius:16px;padding:20px;
+  border-radius:16px;
+  padding:20px;
   box-shadow:0 0 20px rgba(0,255,255,.15)
 }
 .project h3{color:#00b3ff;margin-bottom:8px}
 .project p{opacity:.7;font-size:13px}
 
-/* IP TOOL */
-.ip-box{
-  max-width:500px;margin:auto;
+/* ADVICE TOOL */
+.advice-box{
+  max-width:500px;
+  margin:auto;
   background:rgba(255,255,255,.04);
-  padding:25px;border-radius:16px;
+  padding:25px;
+  border-radius:16px;
   box-shadow:0 0 25px rgba(0,255,255,.2)
 }
-.ip-box input,.ip-box button{
-  width:100%;padding:12px;border:none;
-  border-radius:10px;margin-bottom:12px
+.advice-box button{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:#00ffe1;
+  color:#000;
+  font-weight:bold;
+  cursor:pointer
 }
-.ip-box input{
-  background:#0b0f14;color:#00ffe1;text-align:center
-}
-.ip-box button{
-  background:#00ffe1;color:#000;
-  font-weight:bold;cursor:pointer
-}
-.loader{
-  border:4px solid rgba(255,255,255,.1);
-  border-top:4px solid #00ffe1;
-  border-radius:50%;width:35px;height:35px;
-  animation:spin 1s linear infinite;margin:15px auto
-}
-@keyframes spin{100%{transform:rotate(360deg)}}
-
-.result{
-  margin-top:15px;display:grid;gap:10px
-}
-.result div{
-  background:#0b0f14;padding:10px;
-  border-radius:10px;font-size:13px;
-  box-shadow:0 0 10px rgba(0,255,255,.2)
+.advice{
+  margin-top:20px;
+  padding:15px;
+  background:#0b0f14;
+  border-radius:12px;
+  font-size:14px;
+  color:#00b3ff;
+  box-shadow:0 0 15px rgba(0,255,255,.2)
 }
 
 footer{text-align:center;padding:30px;opacity:.5;font-size:12px}
@@ -99,65 +105,95 @@ footer{text-align:center;padding:30px;opacity:.5;font-size:12px}
 <body>
 
 <header>
-<h1>GLEN TECH</h1>
-<p>Futuristic Developer • Cyber Tools • Innovation</p>
+  <h1>GLEN TECH</h1>
+  <p>Futuristic Developer • Real Projects • Clean Systems</p>
 </header>
 
+<!-- REAL GITHUB STATS -->
 <div class="stats">
-<div class="card"><div class="ring green">360</div>Projects</div>
-<div class="card"><div class="ring blue">1356</div>Commits</div>
-<div class="card"><div class="ring purple">360</div>Clients</div>
-<div class="card"><div class="ring red">31</div>Experiments</div>
+  <div class="card">
+    <div id="repos" class="ring green">--</div>
+    Repositories
+  </div>
+  <div class="card">
+    <div id="followers" class="ring blue">--</div>
+    Followers
+  </div>
+  <div class="card">
+    <div id="following" class="ring purple">--</div>
+    Following
+  </div>
+  <div class="card">
+    <div id="public_gists" class="ring red">--</div>
+    Gists
+  </div>
 </div>
 
 <section>
-<h2>Featured Projects</h2>
-<div class="projects">
-<div class="project"><h3>Glen-AI</h3><p>AI interface & automation concepts</p></div>
-<div class="project"><h3>Downloader</h3><p>Media & utility tools</p></div>
-<div class="project"><h3>Chat System</h3><p>Secure UI messaging experiments</p></div>
-</div>
+  <h2>Featured Projects</h2>
+  <div class="projects">
+    <div class="project">
+      <h3>Glen-AI</h3>
+      <p>AI interface & automation experiments.</p>
+    </div>
+    <div class="project">
+      <h3>Downloader Platform</h3>
+      <p>Media tools & utility systems.</p>
+    </div>
+    <div class="project">
+      <h3>Chat System</h3>
+      <p>Secure messaging UI concepts.</p>
+    </div>
+  </div>
 </section>
 
 <section>
-<h2>IP Stalker Tool</h2>
-<div class="ip-box">
-<input id="ipInput" placeholder="Enter IP or leave empty">
-<button onclick="stalk()">Stalk IP</button>
-<div id="loader" style="display:none" class="loader"></div>
-<div id="result" class="result"></div>
-</div>
+  <h2>Daily Advice (Live)</h2>
+  <div class="advice-box">
+    <button onclick="getAdvice()">Get Advice</button>
+    <div id="advice" class="advice">Click the button to receive advice.</div>
+  </div>
 </section>
 
-<footer>© 2026 Glen Tech — Built Ahead of Time 🚀</footer>
+<footer>
+  © 2026 Glen Tech — Real Data. Real Code. 🚀
+</footer>
 
 <script>
-async function stalk(){
-const ip=document.getElementById("ipInput").value.trim();
-const loader=document.getElementById("loader");
-const result=document.getElementById("result");
-result.innerHTML="";loader.style.display="block";
+/* ===== GITHUB REAL STATS ===== */
+const username = "glentechkenya"; // CHANGE if needed
 
-let address=ip;
-if(!address){
-  const r=await fetch("https://api.ipify.org?format=json");
-  address=(await r.json()).ip;
-}
+fetch(`https://api.github.com/users/${username}`)
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("repos").textContent = data.public_repos ?? "--";
+    document.getElementById("followers").textContent = data.followers ?? "--";
+    document.getElementById("following").textContent = data.following ?? "--";
+    document.getElementById("public_gists").textContent = data.public_gists ?? "--";
+  })
+  .catch(() => {
+    document.querySelectorAll(".ring").forEach(r => r.textContent="--");
+  });
 
-try{
-const res=await fetch(
-`https://api.giftedtech.co.ke/api/stalk/ipstalk?apikey=gifted&address=${address}`
-);
-const d=await res.json();
-loader.style.display="none";
+/* ===== ADVICE API ===== */
+async function getAdvice(){
+  const box = document.getElementById("advice");
+  box.textContent = "Thinking...";
 
-for(let k in d){
-  result.innerHTML+=`<div><b>${k}</b>: ${d[k]}</div>`;
-}
-}catch{
-loader.style.display="none";
-result.innerHTML="<div>Error fetching IP data</div>";
-}
+  try{
+    const res = await fetch(
+      "https://api.giftedtech.co.ke/api/fun/advice?apikey=gifted"
+    );
+    const data = await res.json();
+
+    if(data.success === false){
+      box.textContent = "⚠️ Advice service temporarily unavailable.";
+    }else{
+      box.textContent = data.advice || "Stay focused. Keep building.";
+    }
+  }catch{
+    box.textContent = "⚠️ Network error. Try again later.";
+  }
 }
 </script>
 
