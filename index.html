@@ -148,10 +148,12 @@ footer{text-align:center;padding:30px;opacity:.5;font-size:12px}
 </section>
 
 <section>
-  <h2>Daily Advice (Live)</h2>
+  <h2>Daily Advice</h2>
   <div class="advice-box">
     <button onclick="getAdvice()">Get Advice</button>
-    <div id="advice" class="advice">Click the button to receive advice.</div>
+    <div id="advice" class="advice">
+      Click the button to receive advice.
+    </div>
   </div>
 </section>
 
@@ -161,7 +163,7 @@ footer{text-align:center;padding:30px;opacity:.5;font-size:12px}
 
 <script>
 /* ===== GITHUB REAL STATS ===== */
-const username = "glentechkenya"; // CHANGE if needed
+const username = "glentechkenya"; // change if needed
 
 fetch(`https://api.github.com/users/${username}`)
   .then(res => res.json())
@@ -175,24 +177,36 @@ fetch(`https://api.github.com/users/${username}`)
     document.querySelectorAll(".ring").forEach(r => r.textContent="--");
   });
 
-/* ===== ADVICE API ===== */
+/* ===== SAFE ADVICE SYSTEM ===== */
+const fallbackAdvice = [
+  "Stay consistent. Small wins compound.",
+  "Build first, optimize later.",
+  "Errors are proof you are learning.",
+  "Simple systems scale better.",
+  "Ship fast, fix forward.",
+  "Your future self will thank you for starting today.",
+  "Real developers debug — not quit."
+];
+
 async function getAdvice(){
   const box = document.getElementById("advice");
   box.textContent = "Thinking...";
 
-  try{
+  try {
     const res = await fetch(
       "https://api.giftedtech.co.ke/api/fun/advice?apikey=gifted"
     );
     const data = await res.json();
 
-    if(data.success === false){
-      box.textContent = "⚠️ Advice service temporarily unavailable.";
-    }else{
-      box.textContent = data.advice || "Stay focused. Keep building.";
+    if (data && data.advice) {
+      box.textContent = data.advice;
+    } else {
+      throw new Error("API limit");
     }
-  }catch{
-    box.textContent = "⚠️ Network error. Try again later.";
+  } catch {
+    const random =
+      fallbackAdvice[Math.floor(Math.random() * fallbackAdvice.length)];
+    box.textContent = random;
   }
 }
 </script>
