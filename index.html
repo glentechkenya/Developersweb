@@ -2,213 +2,249 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Glen Tech — Developer</title>
+<title>Glen Tech — Futuristic Developer</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif}
-body{
-  background:radial-gradient(circle at top,#0b0f14,#000);
-  color:#fff;min-height:100vh
-}
-body::before{
-  content:"";position:fixed;inset:0;
-  background:url("https://www.transparenttextures.com/patterns/stardust.png");
-  opacity:.15;pointer-events:none
-}
-header{text-align:center;padding:50px 20px}
-header h1{color:#00ffe1;font-size:32px;text-shadow:0 0 20px #00ffe1}
-header p{opacity:.7;margin-top:8px}
 
+/* ===== BODY & PARTICLES ===== */
+body{
+  background:#05070b;
+  color:#fff;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* floating particles */
+canvas{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+}
+
+/* ===== HEADER ===== */
+header{
+  text-align:center;
+  padding:60px 20px;
+}
+header h1{
+  font-size:36px;
+  color:#00ffe1;
+  text-shadow:0 0 25px #00ffe1;
+}
+header p{
+  opacity:.75;
+  margin-top:10px;
+}
+
+/* ===== STATS ===== */
 .stats{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
   gap:20px;
   max-width:900px;
   margin:40px auto;
-  padding:0 20px
+  padding:0 20px;
 }
 .card{
-  background:rgba(255,255,255,.04);
-  border-radius:20px;
+  background:rgba(255,255,255,.05);
+  border-radius:22px;
   padding:25px;
   text-align:center;
-  box-shadow:0 0 30px rgba(0,255,255,.18)
+  backdrop-filter:blur(6px);
+  box-shadow:0 0 40px rgba(0,255,255,.25);
 }
 .ring{
-  width:95px;height:95px;border-radius:50%;
+  width:95px;height:95px;
+  border-radius:50%;
   border:6px solid;
-  display:flex;align-items:center;justify-content:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   margin:auto auto 12px;
-  font-size:22px;font-weight:bold;
-  text-shadow:0 0 12px currentColor
+  font-size:22px;
+  text-shadow:0 0 15px currentColor;
 }
 .green{border-color:#00ff9c;color:#00ff9c}
 .blue{border-color:#00b3ff;color:#00b3ff}
 .purple{border-color:#c77dff;color:#c77dff}
 .red{border-color:#ff4d4d;color:#ff4d4d}
 
-section{text-align:center;padding:60px 20px}
-section h2{color:#00ffe1;margin-bottom:25px}
+/* ===== SECTIONS ===== */
+section{
+  padding:70px 20px;
+  text-align:center;
+}
+section h2{
+  color:#00ffe1;
+  margin-bottom:30px;
+  text-shadow:0 0 15px #00ffe1;
+}
 
+/* ===== PROJECTS ===== */
 .projects{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:20px;
   max-width:900px;
-  margin:auto
+  margin:auto;
 }
 .project{
-  background:rgba(255,255,255,.04);
-  border-radius:16px;
-  padding:20px;
-  box-shadow:0 0 20px rgba(0,255,255,.15)
+  background:rgba(255,255,255,.05);
+  border-radius:18px;
+  padding:22px;
+  box-shadow:0 0 25px rgba(0,255,255,.2);
 }
 .project h3{color:#00b3ff;margin-bottom:8px}
-.project p{opacity:.7;font-size:13px}
+.project p{opacity:.75;font-size:13px}
 
-/* ADVICE TOOL */
+/* ===== ADVICE SLIDER ===== */
 .advice-box{
-  max-width:500px;
+  max-width:520px;
   margin:auto;
-  background:rgba(255,255,255,.04);
-  padding:25px;
-  border-radius:16px;
-  box-shadow:0 0 25px rgba(0,255,255,.2)
-}
-.advice-box button{
-  width:100%;
-  padding:12px;
-  border:none;
-  border-radius:10px;
-  background:#00ffe1;
-  color:#000;
-  font-weight:bold;
-  cursor:pointer
+  background:rgba(255,255,255,.05);
+  padding:30px;
+  border-radius:22px;
+  box-shadow:0 0 35px rgba(0,255,255,.25);
+  overflow:hidden;
 }
 .advice{
-  margin-top:20px;
-  padding:15px;
-  background:#0b0f14;
-  border-radius:12px;
-  font-size:14px;
-  color:#00b3ff;
-  box-shadow:0 0 15px rgba(0,255,255,.2)
+  font-size:15px;
+  color:#00ffe1;
+  min-height:60px;
+  animation:slideIn .6s ease;
 }
 
-footer{text-align:center;padding:30px;opacity:.5;font-size:12px}
+@keyframes slideIn{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+footer{
+  text-align:center;
+  padding:40px;
+  opacity:.5;
+  font-size:12px;
+}
 </style>
 </head>
 
 <body>
 
+<canvas id="particles"></canvas>
+
 <header>
   <h1>GLEN TECH</h1>
-  <p>Futuristic Developer • Real Projects • Clean Systems</p>
+  <p>Futuristic Developer • Cyber Experiments • Real Code</p>
 </header>
 
-<!-- REAL GITHUB STATS -->
 <div class="stats">
-  <div class="card">
-    <div id="repos" class="ring green">--</div>
-    Repositories
-  </div>
-  <div class="card">
-    <div id="followers" class="ring blue">--</div>
-    Followers
-  </div>
-  <div class="card">
-    <div id="following" class="ring purple">--</div>
-    Following
-  </div>
-  <div class="card">
-    <div id="public_gists" class="ring red">--</div>
-    Gists
-  </div>
+  <div class="card"><div id="repos" class="ring green">--</div>Repos</div>
+  <div class="card"><div id="followers" class="ring blue">--</div>Followers</div>
+  <div class="card"><div id="following" class="ring purple">--</div>Following</div>
+  <div class="card"><div id="gists" class="ring red">--</div>Gists</div>
 </div>
 
 <section>
-  <h2>Featured Projects</h2>
+  <h2>Projects</h2>
   <div class="projects">
-    <div class="project">
-      <h3>Glen-AI</h3>
-      <p>AI interface & automation experiments.</p>
-    </div>
-    <div class="project">
-      <h3>Downloader Platform</h3>
-      <p>Media tools & utility systems.</p>
-    </div>
-    <div class="project">
-      <h3>Chat System</h3>
-      <p>Secure messaging UI concepts.</p>
-    </div>
+    <div class="project"><h3>Glen-AI</h3><p>AI interfaces & automation</p></div>
+    <div class="project"><h3>Downloader</h3><p>Media & utility systems</p></div>
+    <div class="project"><h3>Chat System</h3><p>Secure messaging UI</p></div>
   </div>
 </section>
 
 <section>
-  <h2>Daily Advice</h2>
+  <h2>Live Advice</h2>
   <div class="advice-box">
-    <button onclick="getAdvice()">Get Advice</button>
-    <div id="advice" class="advice">
-      Click the button to receive advice.
-    </div>
+    <div id="advice" class="advice">Loading wisdom...</div>
   </div>
 </section>
 
 <footer>
-  © 2026 Glen Tech — Real Data. Real Code. 🚀
+  © 2026 Glen Tech — Built in the Future 🚀
 </footer>
 
 <script>
-/* ===== GITHUB REAL STATS ===== */
-const username = "glentechkenya"; // change if needed
+/* ===== PARTICLES ===== */
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+let w,h,particles;
 
-fetch(`https://api.github.com/users/${username}`)
-  .then(res => res.json())
-  .then(data => {
-    document.getElementById("repos").textContent = data.public_repos ?? "--";
-    document.getElementById("followers").textContent = data.followers ?? "--";
-    document.getElementById("following").textContent = data.following ?? "--";
-    document.getElementById("public_gists").textContent = data.public_gists ?? "--";
-  })
-  .catch(() => {
-    document.querySelectorAll(".ring").forEach(r => r.textContent="--");
+function resize(){
+  w=canvas.width=window.innerWidth;
+  h=canvas.height=window.innerHeight;
+}
+window.addEventListener("resize",resize);
+resize();
+
+particles = Array.from({length:80},()=>({
+  x:Math.random()*w,
+  y:Math.random()*h,
+  r:Math.random()*2+1,
+  vx:(Math.random()-.5)*0.4,
+  vy:(Math.random()-.5)*0.4
+}));
+
+function draw(){
+  ctx.clearRect(0,0,w,h);
+  ctx.fillStyle="#00ffe1";
+  particles.forEach(p=>{
+    p.x+=p.vx; p.y+=p.vy;
+    if(p.x<0||p.x>w) p.vx*=-1;
+    if(p.y<0||p.y>h) p.vy*=-1;
+    ctx.globalAlpha=0.6;
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fill();
   });
+  requestAnimationFrame(draw);
+}
+draw();
 
-/* ===== SAFE ADVICE SYSTEM ===== */
-const fallbackAdvice = [
-  "Stay consistent. Small wins compound.",
-  "Build first, optimize later.",
-  "Errors are proof you are learning.",
-  "Simple systems scale better.",
-  "Ship fast, fix forward.",
-  "Your future self will thank you for starting today.",
-  "Real developers debug — not quit."
+/* ===== GITHUB REAL STATS ===== */
+const username="glentechkenya";
+fetch(`https://api.github.com/users/${username}`)
+.then(r=>r.json())
+.then(d=>{
+  repos.textContent=d.public_repos;
+  followers.textContent=d.followers;
+  following.textContent=d.following;
+  gists.textContent=d.public_gists;
+});
+
+/* ===== AUTO-SLIDING ADVICE ===== */
+const fallbackAdvice=[
+  "Build what scares you.",
+  "Consistency beats motivation.",
+  "Ship first. Perfect later.",
+  "Errors mean progress.",
+  "Simple systems scale.",
+  "You are closer than you think."
 ];
 
-async function getAdvice(){
-  const box = document.getElementById("advice");
-  box.textContent = "Thinking...";
-
-  try {
-    const res = await fetch(
-      "https://api.giftedtech.co.ke/api/fun/advice?apikey=gifted"
-    );
-    const data = await res.json();
-
-    if (data && data.advice) {
-      box.textContent = data.advice;
-    } else {
-      throw new Error("API limit");
-    }
-  } catch {
-    const random =
-      fallbackAdvice[Math.floor(Math.random() * fallbackAdvice.length)];
-    box.textContent = random;
-  }
+async function loadAdvice(){
+  try{
+    const r=await fetch("https://api.giftedtech.co.ke/api/fun/advice?apikey=gifted");
+    const d=await r.json();
+    if(d.advice) return d.advice;
+  }catch{}
+  return fallbackAdvice[Math.floor(Math.random()*fallbackAdvice.length)];
 }
+
+async function cycleAdvice(){
+  const box=document.getElementById("advice");
+  box.style.animation="none";
+  void box.offsetWidth;
+  box.textContent=await loadAdvice();
+  box.style.animation="slideIn .6s ease";
+}
+
+cycleAdvice();
+setInterval(cycleAdvice,6000);
 </script>
 
 </body>
