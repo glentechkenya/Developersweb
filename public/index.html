@@ -76,10 +76,10 @@
     }
     .horizontal-track {
       display: flex;
-      gap: 18px;
+      gap: 16px;
       width: max-content;
       animation: autoScroll 45s linear infinite;
-      padding: 16px;
+      padding: 16px 8px;
     }
     @keyframes autoScroll {
       0% { transform: translateX(0); }
@@ -87,10 +87,11 @@
     }
 
     .card {
-      min-width: 220px;
+      min-width: 85vw;
+      max-width: 85vw;
       background: rgba(255,255,255,0.04);
-      border-radius: 16px;
-      padding: 14px;
+      border-radius: 18px;
+      padding: 16px;
       box-shadow: 0 0 18px rgba(0,255,231,0.12);
       transition: transform 0.35s ease, box-shadow 0.35s ease;
     }
@@ -118,19 +119,20 @@
 
     /* VERTICAL REVEAL */
     .vertical-section {
-      padding: 40px 16px 60px;
+      padding: 0;
       background: transparent;
     }
     .v-card {
-      max-width: 520px;
-      margin: 50px auto;
+      width: 100%;
+      max-width: none;
+      margin: 40px 0;
       opacity: 0;
       transform: translateY(50px);
       transition: all 0.8s ease;
       background: rgba(255,255,255,0.04);
-      border-radius: 18px;
-      padding: 18px;
-      box-shadow: 0 0 22px rgba(0,255,231,0.18);
+      border-radius: 0;
+      padding: 20px 16px;
+      box-shadow: none;
     }
     .v-card.show {
       opacity: 1;
