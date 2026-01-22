@@ -9,7 +9,7 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: radial-gradient(circle at top, #0b0f1a, #000);
+      background: linear-gradient(180deg, #05070f 0%, #070b16 100%);
       color: #e6e6e6;
       overflow-x: hidden;
     }
@@ -119,6 +119,7 @@
     /* VERTICAL REVEAL */
     .vertical-section {
       padding: 40px 16px 60px;
+      background: transparent;
     }
     .v-card {
       max-width: 520px;
@@ -244,7 +245,13 @@
   // scroll reveal
   const cards = document.querySelectorAll('.v-card');
   const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('show'); });
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        } else {
+          entry.target.classList.remove('show');
+        }
+      });
   }, { threshold: 0.3 });
   cards.forEach(c => observer.observe(c));
 
