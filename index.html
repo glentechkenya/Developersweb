@@ -1,250 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Glen Tech System</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glentek Kenya</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(circle at top, #05010d, #000);
+      color: #e5e7eb;
+      overflow-x: hidden;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+    /* Floating particles */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(#22d3ee33 1px, transparent 1px);
+      background-size: 40px 40px;
+      animation: drift 40s linear infinite;
+      z-index: -1;
+    }
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif}
-body{
-  background:#04060a;
-  color:#fff;
-  overflow-x:hidden;
-}
-canvas{
-  position:fixed;
-  inset:0;
-  z-index:-1;
-}
+    @keyframes drift {
+      from { background-position: 0 0; }
+      to { background-position: 400px 400px; }
+    }
 
-/* ===== COMMAND HERO ===== */
-.hero{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:30px;
-}
-.panel{
-  max-width:720px;
-  width:100%;
-  background:rgba(255,255,255,.04);
-  border-radius:26px;
-  padding:40px;
-  box-shadow:0 0 60px rgba(0,255,255,.35);
-  backdrop-filter:blur(8px);
-}
-.system{
-  color:#00ffe1;
-  font-size:14px;
-  opacity:.8;
-}
-.title{
-  font-size:38px;
-  margin:15px 0;
-  color:#00ffe1;
-  text-shadow:0 0 25px #00ffe1;
-}
-.typing{
-  color:#00b3ff;
-  font-size:16px;
-  min-height:24px;
-}
-.status{
-  margin-top:20px;
-  display:flex;
-  justify-content:center;
-  gap:15px;
-  flex-wrap:wrap;
-}
-.badge{
-  padding:10px 16px;
-  border-radius:12px;
-  background:#0b0f14;
-  box-shadow:0 0 15px rgba(0,255,255,.3);
-  font-size:12px;
-  color:#00ff9c;
-}
+    /* Header marquee */
+    .marquee {
+      position: sticky;
+      top: 0;
+      background: linear-gradient(90deg, #020617, #020617cc);
+      border-bottom: 1px solid #22d3ee55;
+      overflow: hidden;
+      z-index: 50;
+    }
 
-/* ===== MODULES ===== */
-section{
-  padding:80px 20px;
-  text-align:center;
-}
-h2{
-  color:#00ffe1;
-  margin-bottom:30px;
-  text-shadow:0 0 15px #00ffe1;
-}
-.modules{
-  max-width:900px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:25px;
-}
-.module{
-  background:rgba(255,255,255,.05);
-  padding:25px;
-  border-radius:20px;
-  box-shadow:0 0 30px rgba(0,255,255,.25);
-}
-.module h3{
-  color:#00b3ff;
-  margin-bottom:10px;
-}
-.module p{
-  opacity:.75;
-  font-size:13px;
-}
+    .marquee h1 {
+      display: inline-block;
+      white-space: nowrap;
+      padding: 20px 0;
+      font-size: 2rem;
+      color: #22d3ee;
+      animation: slide 15s linear infinite;
+    }
 
-/* ===== SYSTEM MESSAGE ===== */
-.broadcast{
-  max-width:600px;
-  margin:auto;
-  background:rgba(255,255,255,.05);
-  padding:30px;
-  border-radius:22px;
-  box-shadow:0 0 40px rgba(0,255,255,.35);
-}
-.message{
-  color:#00ffe1;
-  font-size:15px;
-  animation:fadeSlide .7s ease;
-}
-@keyframes fadeSlide{
-  from{opacity:0;transform:translateY(15px)}
-  to{opacity:1;transform:translateY(0)}
-}
+    @keyframes slide {
+      from { transform: translateX(100%); }
+      to { transform: translateX(-100%); }
+    }
 
-footer{
-  padding:40px;
-  text-align:center;
-  opacity:.5;
-  font-size:12px;
-}
-</style>
+    section {
+      min-height: 100vh;
+      padding: 80px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.9s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero h2 {
+      font-size: 2.2rem;
+      color: #a5f3fc;
+      text-shadow: 0 0 20px #22d3ee55;
+    }
+
+    .hero p {
+      max-width: 600px;
+      line-height: 1.7;
+      color: #cbd5f5;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, #020617, #020617aa);
+      border: 1px solid #22d3ee33;
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 0 25px #22d3ee11;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 0 40px #22d3ee55;
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      color: #67e8f9;
+      margin-bottom: 10px;
+    }
+
+    .card a {
+      display: inline-block;
+      margin-top: 10px;
+      color: #22d3ee;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .visitors {
+      font-size: 3rem;
+      color: #22d3ee;
+      text-shadow: 0 0 25px #22d3ee;
+    }
+
+    footer {
+      padding: 40px 20px;
+      text-align: center;
+      border-top: 1px solid #22d3ee33;
+      color: #94a3b8;
+    }
+  </style>
 </head>
-
 <body>
 
-<canvas id="particles"></canvas>
-
-<!-- ===== HERO COMMAND CENTER ===== -->
-<div class="hero">
-  <div class="panel">
-    <div class="system">SYSTEM ONLINE</div>
-    <div class="title">GLEN TECH CORE</div>
-    <div id="typing" class="typing"></div>
-
-    <div class="status">
-      <div class="badge">AI MODULE: ACTIVE</div>
-      <div class="badge">DOWNLOADER: READY</div>
-      <div class="badge">CHAT SYSTEM: STANDBY</div>
-    </div>
+  <!-- Moving Header -->
+  <div class="marquee">
+    <h1>⚡ GLENTEK KENYA • FUTURISTIC DEVELOPER HUB • AI • TOOLS • SECURITY ⚡</h1>
   </div>
-</div>
 
-<!-- ===== MODULES ===== -->
-<section>
-  <h2>System Modules</h2>
-  <div class="modules">
-    <div class="module">
-      <h3>Glen-AI</h3>
-      <p>Experimental AI logic, prompts & automation systems.</p>
+  <!-- Hero -->
+  <section class="hero">
+    <h2 class="reveal">Welcome to Glentek Kenya</h2>
+    <p class="reveal">A futuristic developer space inspired by BMW XMD & gifted-dark vibes. Scroll down and watch everything appear smoothly.</p>
+  </section>
+
+  <!-- Categories -->
+  <section>
+    <h2 class="reveal">Categories</h2>
+    <div class="grid">
+
+      <div class="card reveal">
+        <img src="public/Screenshot_20260122-160907_Chrome.jpg" alt="GTA Downloader">
+        <h3>GTA Downloader</h3>
+        <a href="https://blackcatxi-dev.page.gd/view.php?site=gta-game-center&i=1" target="_blank">Open</a>
+      </div>
+
+      <div class="card reveal">
+        <img src="public/Screenshot_20260116-151512_WhatsApp.jpg" alt="Camera Hacker">
+        <h3>Camera Hacker</h3>
+        <a href="https://n.f-a-k.workers.dev/newcamerahack" target="_blank">Open</a>
+      </div>
+
+      <div class="card reveal">
+        <img src="public/5cfe448b-9c92-4b62-9d43-bde0b52f3db5.png" alt="AI">
+        <h3>Glentek AI</h3>
+        <a href="https://glentech-ai.onrender.com" target="_blank">Launch</a>
+      </div>
+
     </div>
-    <div class="module">
-      <h3>Downloader Core</h3>
-      <p>Multi-platform media extraction tools.</p>
+  </section>
+
+  <!-- WhatsApp -->
+  <section>
+    <h2 class="reveal">Community</h2>
+    <div class="grid">
+      <div class="card reveal">
+        <h3>WhatsApp Support Group</h3>
+        <a href="https://chat.whatsapp.com/L6wlVwXs4cqEdvDdXs8pWO" target="_blank">Join Group</a>
+      </div>
+      <div class="card reveal">
+        <h3>WhatsApp Channel</h3>
+        <a href="https://whatsapp.com/channel/0029VbBz7he0G0XhFAUWt70P" target="_blank">Join Channel</a>
+      </div>
     </div>
-    <div class="module">
-      <h3>Chat Engine</h3>
-      <p>Secure UI & encrypted messaging concepts.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- ===== SYSTEM BROADCAST ===== -->
-<section>
-  <h2>System Broadcast</h2>
-  <div class="broadcast">
-    <div id="message" class="message">Initializing...</div>
-  </div>
-</section>
+  <!-- Visitors -->
+  <section>
+    <h2 class="reveal">Live Visitors</h2>
+    <div class="visitors reveal" id="visitors">0</div>
+  </section>
 
-<footer>
-  © 2026 GLEN TECH — SYSTEM BUILD COMPLETE
-</footer>
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 Glentek Kenya • GitHub: github.com/glentechkenya</p>
+  </footer>
 
-<script>
-/* ===== PARTICLES ===== */
-const c=document.getElementById("particles"),x=c.getContext("2d");
-let w,h,p;
-function rs(){w=c.width=innerWidth;h=c.height=innerHeight}
-addEventListener("resize",rs);rs();
-p=Array.from({length:90},()=>({
-  x:Math.random()*w,y:Math.random()*h,
-  vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:Math.random()*2+1
-}));
-(function anim(){
-  x.clearRect(0,0,w,h);
-  x.fillStyle="#00ffe1";
-  p.forEach(a=>{
-    a.x+=a.vx;a.y+=a.vy;
-    if(a.x<0||a.x>w)a.vx*=-1;
-    if(a.y<0||a.y>h)a.vy*=-1;
-    x.globalAlpha=.6;
-    x.beginPath();
-    x.arc(a.x,a.y,a.r,0,Math.PI*2);
-    x.fill();
-  });
-  requestAnimationFrame(anim);
-})();
+  <script>
+    /* Reveal on scroll */
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('show');
+      });
+    }, { threshold: 0.2 });
 
-/* ===== TYPING EFFECT ===== */
-const lines=[
-  "Booting developer core...",
-  "Loading AI modules...",
-  "Connecting systems...",
-  "Welcome to Glen Tech."
-];
-let i=0,j=0;
-function type(){
-  if(i<lines.length){
-    if(j<=lines[i].length){
-      typing.textContent=lines[i].slice(0,j++);
-    }else{setTimeout(()=>{j=0;i++},800)}
-  }
-}
-setInterval(type,80);
+    reveals.forEach(r => observer.observe(r));
 
-/* ===== SYSTEM MESSAGE ROTATION ===== */
-const msgs=[
-  "Build what others fear to start.",
-  "Systems over motivation.",
-  "Errors detected — growth confirmed.",
-  "Ship. Learn. Upgrade.",
-  "Future initialized."
-];
-
-async function rotate(){
-  try{
-    const r=await fetch("https://api.giftedtech.co.ke/api/fun/advice?apikey=gifted");
-    const d=await r.json();
-    if(d.advice) msgs.unshift(d.advice);
-  }catch{}
-  const box=document.getElementById("message");
-  box.style.animation="none";void box.offsetWidth;
-  box.textContent=msgs[Math.floor(Math.random()*msgs.length)];
-  box.style.animation="fadeSlide .7s ease";
-}
-rotate();
-setInterval(rotate,6500);
-</script>
+    /* Fake live visitors (visual only) */
+    let count = Math.floor(Math.random() * 20) + 5;
+    const el = document.getElementById('visitors');
+    setInterval(() => {
+      count += Math.floor(Math.random() * 3);
+      el.textContent = count;
+    }, 3000);
+  </script>
 
 </body>
 </html>
