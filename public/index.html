@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GlentechKenya</title>
+  <title>Glentek Kenya</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -29,7 +29,7 @@
       to { background-position: 400px 400px; }
     }
 
-    /* HEADER MARQUEE */
+    /* HEADER */
     .marquee {
       position: sticky;
       top: 0;
@@ -53,49 +53,22 @@
       to { transform: translateX(-100%); }
     }
 
-    section {
-      padding: 80px 20px;
-    }
+    section { padding: 70px 20px; }
 
-    /* REVEAL EFFECTS */
-    .reveal {
-      opacity: 0;
-      transition: all 1s ease;
-    }
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(50px); transition: all 0.9s ease; }
+    .reveal.show { opacity: 1; transform: translateY(0); }
 
-    .from-left { transform: translateX(-60px); }
-    .from-right { transform: translateX(60px); }
-    .from-bottom { transform: translateY(60px); }
-    .from-top { transform: translateY(-60px); }
-
-    .reveal.show {
-      opacity: 1;
-      transform: translate(0,0);
-    }
-
-    /* HERO */
-    .hero h2 {
-      font-size: 2.3rem;
-      color: #a5f3fc;
-      text-shadow: 0 0 25px #22d3ee55;
-    }
-
-    .hero p {
-      max-width: 650px;
-      line-height: 1.7;
-      color: #cbd5f5;
-    }
-
-    /* HORIZONTAL CATEGORY SCROLLER */
-    .scroll-wrapper {
-      overflow-x: hidden;
+    /* HERO CATEGORY SCROLLER */
+    .hero-scroll {
+      overflow: hidden;
       position: relative;
     }
 
-    .scroll-track {
+    .hero-track {
       display: flex;
-      gap: 25px;
-      animation: autoScroll 25s linear infinite;
+      gap: 30px;
+      animation: autoScroll 30s linear infinite;
     }
 
     @keyframes autoScroll {
@@ -103,134 +76,164 @@
       to { transform: translateX(-50%); }
     }
 
-    .card {
-      min-width: 260px;
-      background: linear-gradient(180deg, #020617, #020617aa);
-      border: 1px solid #22d3ee33;
-      border-radius: 18px;
-      padding: 18px;
-      box-shadow: 0 0 30px #22d3ee11;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    .hero-card {
+      min-width: 320px;
+      background: #020617;
+      border-radius: 22px;
+      border: 1px solid #22d3ee44;
+      box-shadow: 0 0 40px #22d3ee22;
+      overflow: hidden;
     }
 
-    .card:hover {
-      transform: translateY(-8px) scale(1.03);
-      box-shadow: 0 0 45px #22d3ee66;
-    }
-
-    .card img {
+    .hero-card img {
       width: 100%;
-      height: 150px;
+      height: 220px;
       object-fit: cover;
+    }
+
+    .hero-card .content {
+      padding: 18px;
+    }
+
+    .hero-card h3 { color: #67e8f9; margin-bottom: 10px; }
+
+    .hero-card a {
+      display: inline-block;
+      padding: 8px 16px;
       border-radius: 12px;
-      margin-bottom: 12px;
-    }
-
-    .card h3 {
-      color: #67e8f9;
-      margin-bottom: 6px;
-    }
-
-    .card a {
-      color: #22d3ee;
+      background: #22d3ee;
+      color: #020617;
       text-decoration: none;
       font-size: 0.9rem;
     }
 
-    /* VISITORS */
-    .visitors {
-      font-size: 3.2rem;
-      color: #22d3ee;
-      text-shadow: 0 0 30px #22d3ee;
+    /* VERTICAL CARDS */
+    .stack {
+      max-width: 900px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
     }
 
-    footer {
-      padding: 40px 20px;
-      text-align: center;
-      border-top: 1px solid #22d3ee33;
-      color: #94a3b8;
+    .stack-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      background: #020617aa;
+      border-radius: 22px;
+      border: 1px solid #22d3ee33;
+      box-shadow: 0 0 35px #22d3ee22;
+      padding: 20px;
     }
+
+    .stack-card img {
+      width: 100%;
+      border-radius: 16px;
+      object-fit: cover;
+    }
+
+    .stack-card h3 { color: #67e8f9; margin-bottom: 10px; }
+
+    /* GITHUB */
+    .github {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .github img { width: 50px; }
+
+    footer { text-align: center; padding: 40px; color: #94a3b8; }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
   <div class="marquee">
-    <h1>⚡ GLENTEK KENYA • AI • TOOLS • SECURITY • FUTURISTIC DEVELOPER HUB ⚡</h1>
+    <h1>⚡ GLENTEK KENYA • FUTURISTIC DEVELOPER HUB • AI • TOOLS ⚡</h1>
   </div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <h2 class="reveal from-left">Welcome to Glentek Kenya</h2>
-    <p class="reveal from-right">A futuristic developer platform. Scroll down — everything appears from different directions.</p>
-  </section>
-
-  <!-- CATEGORIES AUTO SCROLL -->
+  <!-- HERO SCROLL CATEGORIES -->
   <section>
-    <h2 class="reveal from-top">Categories</h2>
-    <div class="scroll-wrapper">
-      <div class="scroll-track">
+    <div class="hero-scroll">
+      <div class="hero-track">
 
-        <div class="card reveal from-bottom">
+        <div class="hero-card">
           <img src="public/Screenshot_20260122-160907_Chrome.jpg" alt="GTA Downloader">
-          <h3>GTA Downloader</h3>
-          <a href="https://blackcatxi-dev.page.gd/view.php?site=gta-game-center&i=1" target="_blank">Open</a>
+          <div class="content">
+            <h3>GTA Downloader</h3>
+            <a href="https://blackcatxi-dev.page.gd/view.php?site=gta-game-center&i=1" target="_blank">Visit Site</a>
+          </div>
         </div>
 
-        <div class="card reveal from-bottom">
+        <div class="hero-card">
           <img src="public/Screenshot_20260116-151512_WhatsApp.jpg" alt="Camera Hacker">
-          <h3>Camera Hacker</h3>
-          <a href="https://n.f-a-k.workers.dev/newcamerahack" target="_blank">Open</a>
+          <div class="content">
+            <h3>Camera Hacker</h3>
+            <a href="https://n.f-a-k.workers.dev/newcamerahack" target="_blank">Visit Site</a>
+          </div>
         </div>
 
-        <div class="card reveal from-bottom">
-          <img src="public/5cfe448b-9c92-4b62-9d43-bde0b52f3db5.png" alt="AI">
-          <h3>Glentech AI</h3>
-          <a href="https://glentech-ai.onrender.com" target="_blank">Launch</a>
+        <div class="hero-card">
+          <img src="public/5cfe448b-9c92-4b62-9d43-bde0b52f3db5.png" alt="Glentek AI">
+          <div class="content">
+            <h3>Glentek AI</h3>
+            <a href="https://glentech-ai.onrender.com" target="_blank">Visit Site</a>
+          </div>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- COMMUNITY -->
+  <!-- SCROLL DOWN STACK -->
   <section>
-    <h2 class="reveal from-left">Community</h2>
-    <p class="reveal from-right">
-      <a href="https://chat.whatsapp.com/L6wlVwXs4cqEdvDdXs8pWO" target="_blank">Join WhatsApp Group</a> | 
-      <a href="https://whatsapp.com/channel/0029VbBz7he0G0XhFAUWt70P" target="_blank">Join Channel</a>
-    </p>
+    <h2 class="reveal">Categories</h2>
+    <div class="stack">
+
+      <div class="stack-card reveal">
+        <img src="public/Screenshot_20260122-160907_Chrome.jpg" alt="GTA">
+        <div>
+          <h3>GTA Downloader</h3>
+          <p>Download and explore GTA tools.</p>
+        </div>
+      </div>
+
+      <div class="stack-card reveal">
+        <img src="public/Screenshot_20260116-151512_WhatsApp.jpg" alt="Camera">
+        <div>
+          <h3>Camera Hacker</h3>
+          <p>Advanced camera exploration tools.</p>
+        </div>
+      </div>
+
+      <div class="stack-card reveal">
+        <img src="public/5cfe448b-9c92-4b62-9d43-bde0b52f3db5.png" alt="AI">
+        <div>
+          <h3>Glentek AI</h3>
+          <p>Your futuristic AI assistant.</p>
+        </div>
+      </div>
+
+    </div>
   </section>
 
-  <!-- REAL VISITORS -->
+  <!-- GITHUB -->
   <section>
-    <h2 class="reveal from-top">Live Visitors</h2>
-    <div class="visitors reveal from-bottom" id="visitors">0</div>
+    <div class="github reveal">
+      <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub">
+      <a href="https://github.com/glentechkenya" target="_blank">github.com/glentechkenya</a>
+    </div>
   </section>
 
-  <footer>
-    © 2026 Glentech Kenya • github.com/glentechkenya
-  </footer>
+  <footer>© 2026 Glentek Kenya</footer>
 
   <script>
-    /* reveal observer */
-    const reveals = document.querySelectorAll('.reveal');
     const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) e.target.classList.add('show');
-      });
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
     }, { threshold: 0.2 });
-    reveals.forEach(r => obs.observe(r));
-
-    /* REAL visitor counter using CountAPI */
-    fetch('https://api.countapi.xyz/hit/glentek-kenya/site')
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById('visitors').textContent = data.value;
-      })
-      .catch(() => {
-        document.getElementById('visitors').textContent = '—';
-      });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
   </script>
 
 </body>
