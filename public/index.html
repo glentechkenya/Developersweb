@@ -19,18 +19,18 @@
       position: sticky;
       top: 0;
       z-index: 10;
-      background: rgba(0,0,0,0.7);
-      backdrop-filter: blur(8px);
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(255,255,255,0.08);
-      padding: 14px 0;
+      padding: 12px 0;
     }
     .header-scroll {
       display: flex;
-      gap: 40px;
+      gap: 36px;
       padding-left: 20px;
       white-space: nowrap;
-      animation: headerMove 20s linear infinite;
-      font-size: 1.3rem;
+      animation: headerMove 22s linear infinite;
+      font-size: 1.2rem;
       font-weight: 700;
       color: #00ffe7;
     }
@@ -39,35 +39,47 @@
       100% { transform: translateX(-50%); }
     }
 
-    /* HERO MESSAGE */
+    /* HERO */
     .hero {
       text-align: center;
-      padding: 80px 20px 40px;
-      animation: fadeIn 1.5s ease;
+      padding: 70px 18px 30px;
+      animation: fadeIn 1.4s ease;
     }
     .hero h1 {
-      font-size: 2.6rem;
-      margin-bottom: 10px;
+      font-size: 2.2rem;
+      margin-bottom: 8px;
       color: #00ffe7;
     }
     .hero p {
-      max-width: 700px;
+      max-width: 680px;
       margin: auto;
       opacity: 0.85;
+      font-size: 0.95rem;
     }
 
-    /* HORIZONTAL CATEGORIES */
+    /* VISITOR COUNTER */
+    .visitors {
+      margin-top: 18px;
+      font-size: 0.9rem;
+      opacity: 0.85;
+    }
+    .visitors span {
+      color: #00ffe7;
+      font-weight: 600;
+    }
+
+    /* HORIZONTAL AUTO SCROLL */
     .horizontal-section {
-      margin-top: 40px;
-      padding: 20px 0;
+      margin-top: 30px;
+      padding: 10px 0 20px;
       overflow-x: hidden;
     }
     .horizontal-track {
       display: flex;
-      gap: 24px;
+      gap: 18px;
       width: max-content;
-      animation: autoScroll 35s linear infinite;
-      padding: 20px;
+      animation: autoScroll 45s linear infinite;
+      padding: 16px;
     }
     @keyframes autoScroll {
       0% { transform: translateX(0); }
@@ -75,49 +87,49 @@
     }
 
     .card {
-      min-width: 280px;
+      min-width: 220px;
       background: rgba(255,255,255,0.04);
       border-radius: 16px;
-      padding: 16px;
-      box-shadow: 0 0 20px rgba(0,255,231,0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding: 14px;
+      box-shadow: 0 0 18px rgba(0,255,231,0.12);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
     }
     .card:hover {
-      transform: translateY(-8px) scale(1.03);
-      box-shadow: 0 0 30px rgba(0,255,231,0.25);
+      transform: translateY(-6px) scale(1.04);
+      box-shadow: 0 0 35px rgba(0,255,231,0.45);
     }
     .card img {
       width: 100%;
       border-radius: 12px;
       margin-bottom: 10px;
-      max-height: 180px;
+      max-height: 140px;
       object-fit: cover;
     }
     .card a {
       display: inline-block;
-      margin-top: 8px;
-      padding: 8px 14px;
+      padding: 7px 14px;
       background: linear-gradient(135deg, #00ffe7, #008cff);
       color: #000;
       text-decoration: none;
       font-weight: 600;
       border-radius: 20px;
+      font-size: 0.85rem;
     }
 
-    /* VERTICAL SCROLL REVEAL */
+    /* VERTICAL REVEAL */
     .vertical-section {
-      padding: 60px 20px;
+      padding: 40px 16px 60px;
     }
     .v-card {
-      max-width: 500px;
-      margin: 60px auto;
+      max-width: 520px;
+      margin: 50px auto;
       opacity: 0;
-      transform: translateY(60px);
+      transform: translateY(50px);
       transition: all 0.8s ease;
       background: rgba(255,255,255,0.04);
       border-radius: 18px;
-      padding: 20px;
-      box-shadow: 0 0 25px rgba(0,255,231,0.1);
+      padding: 18px;
+      box-shadow: 0 0 22px rgba(0,255,231,0.18);
     }
     .v-card.show {
       opacity: 1;
@@ -127,105 +139,46 @@
       width: 100%;
       border-radius: 14px;
       margin-bottom: 12px;
-      max-height: 220px;
+      max-height: 180px;
       object-fit: cover;
     }
 
-    /* FOOTER / GITHUB */
+    /* FOOTER */
     footer {
       text-align: center;
-      padding: 50px 20px 70px;
-      background: linear-gradient(180deg, rgba(0,0,0,0), #000);
+      padding: 50px 18px 90px;
     }
     footer img {
-      width: 90px;
-      opacity: 0.9;
-      margin-bottom: 14px;
+      width: 80px;
+      margin-bottom: 12px;
     }
     footer p {
+      font-size: 0.9rem;
       opacity: 0.85;
+    }
+
+    /* FLOATING WHATSAPP */
+    .whatsapp {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #25D366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 25px rgba(37,211,102,0.6);
+      z-index: 20;
+    }
+    .whatsapp img {
+      width: 30px;
     }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
-    }
-  
-    /* MOBILE OPTIMIZATION */
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2rem;
-      }
-      .hero p {
-        font-size: 0.95rem;
-        padding: 0 10px;
-      }
-      .header-scroll {
-        font-size: 1.05rem;
-        gap: 24px;
-      }
-      .card {
-        min-width: 240px;
-        padding: 14px;
-      }
-      .horizontal-track {
-        animation-duration: 45s;
-      }
-      .v-card {
-        margin: 40px auto;
-        padding: 16px;
-      }
-      footer img {
-        width: 70px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      header {
-        padding: 10px 0;
-      }
-      .hero {
-        padding: 55px 14px 28px;
-      }
-      .hero h1 {
-        font-size: 1.6rem;
-      }
-      .card {
-        min-width: 210px;
-      }
-      .card img {
-        max-height: 140px;
-      }
-      .v-card img {
-        max-height: 180px;
-      }
-      .card a {
-        padding: 7px 14px;
-        font-size: 0.85rem;
-      }
-      .horizontal-track {
-        gap: 14px;
-      }
-      .v-card {
-        max-width: 94%;
-      }
-    }
-      .hero {
-        padding: 60px 14px 30px;
-      }
-      .hero h1 {
-        font-size: 1.7rem;
-      }
-      .card a {
-        padding: 7px 12px;
-        font-size: 0.9rem;
-      }
-      .horizontal-track {
-        gap: 16px;
-      }
-      .v-card {
-        max-width: 92%;
-      }
     }
   </style>
 </head>
@@ -234,73 +187,73 @@
 <header>
   <div class="header-scroll">
     <span>GLENTECHKENYA</span>
-    <span>AI • TOOLS • SECURITY • INNOVATION</span>
+    <span>AI • TOOLS • SECURITY</span>
     <span>BUILT FOR DEVELOPERS</span>
     <span>FUTURE READY</span>
   </div>
 </header>
 
 <section class="hero">
-  <h1>Welcome to GlentechKenya</h1>
-  <p>A futuristic developer hub built for creators, hackers, and innovators. Explore tools, AI systems, and projects crafted to push limits.</p>
+  <h1>GlentechKenya Developer Hub</h1>
+  <p>Explore futuristic tools, AI systems, and projects built to push limits. Learn, build, and evolve.</p>
+  <div class="visitors">Active visitors: <span id="visitorCount">--</span></div>
 </section>
 
 <section class="horizontal-section">
   <div class="horizontal-track">
 
     <div class="card">
-      <img src="/Screenshot_20260122-160907_Chrome.jpg" alt="GTA Downloader" />
+      <img src="/Screenshot_20260122-160907_Chrome.jpg" />
       <a href="https://blackcatxi-dev.page.gd/view.php?site=gta-game-center&i=1" target="_blank">Enter the Zone</a>
     </div>
 
     <div class="card">
-      <img src="/Screenshot_20260116-151512_WhatsApp.jpg" alt="Camera Tool" />
+      <img src="/Screenshot_20260116-151512_WhatsApp.jpg" />
       <a href="https://n.f-a-k.workers.dev/newcamerahack" target="_blank">Enter the Zone</a>
     </div>
 
     <div class="card">
-      <img src="/5cfe448b-9c92-4b62-9d43-bde0b52f3db5.png" alt="AI Platform" />
+      <img src="/5cfe448b-9c92-4b62-9d43-bde0b52f3db5.png" />
       <a href="https://glentech-ai.onrender.com" target="_blank">Enter the Zone</a>
     </div>
 
     <div class="card">
-      <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" />
-      <a href="https://github.com/glentechkenya" target="_blank">Our GitHub</a>
+      <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" />
+      <a href="https://github.com/glentechkenya" target="_blank">Fork the Future</a>
     </div>
 
   </div>
 </section>
 
 <section class="vertical-section">
-  <div class="v-card">
-    <img src="/Screenshot_20260122-160907_Chrome.jpg" />
-    <a href="https://blackcatxi-dev.page.gd/view.php?site=gta-game-center&i=1" target="_blank">Enter the Zone</a>
-  </div>
-
-  <div class="v-card">
-    <img src="/Screenshot_20260116-151512_WhatsApp.jpg" />
-    <a href="https://n.f-a-k.workers.dev/newcamerahack" target="_blank">Enter the Zone</a>
-  </div>
-
-  <div class="v-card">
-    <img src="/5cfe448b-9c92-4b62-9d43-bde0b52f3db5.png" />
-    <a href="https://glentech-ai.onrender.com" target="_blank">Enter the Zone</a>
-  </div>
+  <div class="v-card"><img src="/Screenshot_20260122-160907_Chrome.jpg" /><a href="https://blackcatxi-dev.page.gd/view.php?site=gta-game-center&i=1" target="_blank">Enter the Zone</a></div>
+  <div class="v-card"><img src="/Screenshot_20260116-151512_WhatsApp.jpg" /><a href="https://n.f-a-k.workers.dev/newcamerahack" target="_blank">Enter the Zone</a></div>
+  <div class="v-card"><img src="/5cfe448b-9c92-4b62-9d43-bde0b52f3db5.png" /><a href="https://glentech-ai.onrender.com" target="_blank">Enter the Zone</a></div>
 </section>
 
 <footer>
-  <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo" />
+  <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" />
   <p>Please fork our repo on GitHub and support GlentechKenya innovation.</p>
 </footer>
 
+<a class="whatsapp" href="https://chat.whatsapp.com/L6wlVwXs4cqEdvDdXs8pWO" target="_blank">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" />
+</a>
+
 <script>
+  // scroll reveal
   const cards = document.querySelectorAll('.v-card');
   const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('show');
-    });
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('show'); });
   }, { threshold: 0.3 });
   cards.forEach(c => observer.observe(c));
+
+  // visitor counter (simple real-session based)
+  const key = 'glentech_visits';
+  let count = localStorage.getItem(key) || 0;
+  count++;
+  localStorage.setItem(key, count);
+  document.getElementById('visitorCount').textContent = count;
 </script>
 
 </body>
