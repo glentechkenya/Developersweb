@@ -89,7 +89,9 @@
     .card img {
       width: 100%;
       border-radius: 12px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
+      max-height: 180px;
+      object-fit: cover;
     }
     .card a {
       display: inline-block;
@@ -124,7 +126,9 @@
     .v-card img {
       width: 100%;
       border-radius: 14px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
+      max-height: 220px;
+      object-fit: cover;
     }
 
     /* FOOTER / GITHUB */
@@ -145,6 +149,83 @@
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+  
+    /* MOBILE OPTIMIZATION */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .hero p {
+        font-size: 0.95rem;
+        padding: 0 10px;
+      }
+      .header-scroll {
+        font-size: 1.05rem;
+        gap: 24px;
+      }
+      .card {
+        min-width: 240px;
+        padding: 14px;
+      }
+      .horizontal-track {
+        animation-duration: 45s;
+      }
+      .v-card {
+        margin: 40px auto;
+        padding: 16px;
+      }
+      footer img {
+        width: 70px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 10px 0;
+      }
+      .hero {
+        padding: 55px 14px 28px;
+      }
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+      .card {
+        min-width: 210px;
+      }
+      .card img {
+        max-height: 140px;
+      }
+      .v-card img {
+        max-height: 180px;
+      }
+      .card a {
+        padding: 7px 14px;
+        font-size: 0.85rem;
+      }
+      .horizontal-track {
+        gap: 14px;
+      }
+      .v-card {
+        max-width: 94%;
+      }
+    }
+      .hero {
+        padding: 60px 14px 30px;
+      }
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+      .card a {
+        padding: 7px 12px;
+        font-size: 0.9rem;
+      }
+      .horizontal-track {
+        gap: 16px;
+      }
+      .v-card {
+        max-width: 92%;
+      }
     }
   </style>
 </head>
@@ -169,17 +250,17 @@
 
     <div class="card">
       <img src="/Screenshot_20260122-160907_Chrome.jpg" alt="GTA Downloader" />
-      <a href="https://blackcatxi-dev.page.gd/view.php?site=gta-game-center&i=1" target="_blank">Visit Site</a>
+      <a href="https://blackcatxi-dev.page.gd/view.php?site=gta-game-center&i=1" target="_blank">Enter the Zone</a>
     </div>
 
     <div class="card">
       <img src="/Screenshot_20260116-151512_WhatsApp.jpg" alt="Camera Tool" />
-      <a href="https://n.f-a-k.workers.dev/newcamerahack" target="_blank">Visit Site</a>
+      <a href="https://n.f-a-k.workers.dev/newcamerahack" target="_blank">Enter the Zone</a>
     </div>
 
     <div class="card">
       <img src="/5cfe448b-9c92-4b62-9d43-bde0b52f3db5.png" alt="AI Platform" />
-      <a href="https://glentech-ai.onrender.com" target="_blank">Visit Site</a>
+      <a href="https://glentech-ai.onrender.com" target="_blank">Enter the Zone</a>
     </div>
 
     <div class="card">
@@ -193,17 +274,17 @@
 <section class="vertical-section">
   <div class="v-card">
     <img src="/Screenshot_20260122-160907_Chrome.jpg" />
-    <a href="https://blackcatxi-dev.page.gd/view.php?site=gta-game-center&i=1" target="_blank">Visit Site</a>
+    <a href="https://blackcatxi-dev.page.gd/view.php?site=gta-game-center&i=1" target="_blank">Enter the Zone</a>
   </div>
 
   <div class="v-card">
     <img src="/Screenshot_20260116-151512_WhatsApp.jpg" />
-    <a href="https://n.f-a-k.workers.dev/newcamerahack" target="_blank">Visit Site</a>
+    <a href="https://n.f-a-k.workers.dev/newcamerahack" target="_blank">Enter the Zone</a>
   </div>
 
   <div class="v-card">
     <img src="/5cfe448b-9c92-4b62-9d43-bde0b52f3db5.png" />
-    <a href="https://glentech-ai.onrender.com" target="_blank">Visit Site</a>
+    <a href="https://glentech-ai.onrender.com" target="_blank">Enter the Zone</a>
   </div>
 </section>
 
