@@ -14,7 +14,6 @@
       overflow-x: hidden;
     }
 
-    /* Floating particles */
     body::before {
       content: "";
       position: fixed;
@@ -30,7 +29,7 @@
       to { background-position: 400px 400px; }
     }
 
-    /* Header marquee */
+    /* HEADER MARQUEE */
     .marquee {
       position: sticky;
       top: 0;
@@ -43,10 +42,10 @@
     .marquee h1 {
       display: inline-block;
       white-space: nowrap;
-      padding: 20px 0;
+      padding: 18px 0;
       font-size: 2rem;
       color: #22d3ee;
-      animation: slide 15s linear infinite;
+      animation: slide 14s linear infinite;
     }
 
     @keyframes slide {
@@ -55,80 +54,94 @@
     }
 
     section {
-      min-height: 100vh;
       padding: 80px 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 30px;
     }
 
+    /* REVEAL EFFECTS */
     .reveal {
       opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.9s ease;
+      transition: all 1s ease;
     }
+
+    .from-left { transform: translateX(-60px); }
+    .from-right { transform: translateX(60px); }
+    .from-bottom { transform: translateY(60px); }
+    .from-top { transform: translateY(-60px); }
 
     .reveal.show {
       opacity: 1;
-      transform: translateY(0);
+      transform: translate(0,0);
     }
 
+    /* HERO */
     .hero h2 {
-      font-size: 2.2rem;
+      font-size: 2.3rem;
       color: #a5f3fc;
-      text-shadow: 0 0 20px #22d3ee55;
+      text-shadow: 0 0 25px #22d3ee55;
     }
 
     .hero p {
-      max-width: 600px;
+      max-width: 650px;
       line-height: 1.7;
       color: #cbd5f5;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    /* HORIZONTAL CATEGORY SCROLLER */
+    .scroll-wrapper {
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .scroll-track {
+      display: flex;
       gap: 25px;
+      animation: autoScroll 25s linear infinite;
+    }
+
+    @keyframes autoScroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
     }
 
     .card {
+      min-width: 260px;
       background: linear-gradient(180deg, #020617, #020617aa);
       border: 1px solid #22d3ee33;
       border-radius: 18px;
-      padding: 20px;
-      box-shadow: 0 0 25px #22d3ee11;
+      padding: 18px;
+      box-shadow: 0 0 30px #22d3ee11;
       transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
 
     .card:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 0 40px #22d3ee55;
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 0 45px #22d3ee66;
     }
 
     .card img {
       width: 100%;
+      height: 150px;
+      object-fit: cover;
       border-radius: 12px;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
     }
 
     .card h3 {
       color: #67e8f9;
-      margin-bottom: 10px;
+      margin-bottom: 6px;
     }
 
     .card a {
-      display: inline-block;
-      margin-top: 10px;
       color: #22d3ee;
       text-decoration: none;
       font-size: 0.9rem;
     }
 
+    /* VISITORS */
     .visitors {
-      font-size: 3rem;
+      font-size: 3.2rem;
       color: #22d3ee;
-      text-shadow: 0 0 25px #22d3ee;
+      text-shadow: 0 0 30px #22d3ee;
     }
 
     footer {
@@ -141,87 +154,83 @@
 </head>
 <body>
 
-  <!-- Moving Header -->
+  <!-- HEADER -->
   <div class="marquee">
-    <h1>⚡ GLENTEK KENYA • FUTURISTIC DEVELOPER HUB • AI • TOOLS • SECURITY ⚡</h1>
+    <h1>⚡ GLENTEK KENYA • AI • TOOLS • SECURITY • FUTURISTIC DEVELOPER HUB ⚡</h1>
   </div>
 
-  <!-- Hero -->
+  <!-- HERO -->
   <section class="hero">
-    <h2 class="reveal">Welcome to Glentek Kenya</h2>
-    <p class="reveal">A futuristic developer space inspired by BMW XMD & gifted-dark vibes. Scroll down and watch everything appear smoothly.</p>
+    <h2 class="reveal from-left">Welcome to Glentek Kenya</h2>
+    <p class="reveal from-right">A futuristic developer platform. Scroll down — everything appears from different directions.</p>
   </section>
 
-  <!-- Categories -->
+  <!-- CATEGORIES AUTO SCROLL -->
   <section>
-    <h2 class="reveal">Categories</h2>
-    <div class="grid">
+    <h2 class="reveal from-top">Categories</h2>
+    <div class="scroll-wrapper">
+      <div class="scroll-track">
 
-      <div class="card reveal">
-        <img src="public/Screenshot_20260122-160907_Chrome.jpg" alt="GTA Downloader">
-        <h3>GTA Downloader</h3>
-        <a href="https://blackcatxi-dev.page.gd/view.php?site=gta-game-center&i=1" target="_blank">Open</a>
-      </div>
+        <div class="card reveal from-bottom">
+          <img src="public/Screenshot_20260122-160907_Chrome.jpg" alt="GTA Downloader">
+          <h3>GTA Downloader</h3>
+          <a href="https://blackcatxi-dev.page.gd/view.php?site=gta-game-center&i=1" target="_blank">Open</a>
+        </div>
 
-      <div class="card reveal">
-        <img src="public/Screenshot_20260116-151512_WhatsApp.jpg" alt="Camera Hacker">
-        <h3>Camera Hacker</h3>
-        <a href="https://n.f-a-k.workers.dev/newcamerahack" target="_blank">Open</a>
-      </div>
+        <div class="card reveal from-bottom">
+          <img src="public/Screenshot_20260116-151512_WhatsApp.jpg" alt="Camera Hacker">
+          <h3>Camera Hacker</h3>
+          <a href="https://n.f-a-k.workers.dev/newcamerahack" target="_blank">Open</a>
+        </div>
 
-      <div class="card reveal">
-        <img src="public/5cfe448b-9c92-4b62-9d43-bde0b52f3db5.png" alt="AI">
-        <h3>Glentek AI</h3>
-        <a href="https://glentech-ai.onrender.com" target="_blank">Launch</a>
-      </div>
+        <div class="card reveal from-bottom">
+          <img src="public/5cfe448b-9c92-4b62-9d43-bde0b52f3db5.png" alt="AI">
+          <h3>Glentek AI</h3>
+          <a href="https://glentech-ai.onrender.com" target="_blank">Launch</a>
+        </div>
 
-    </div>
-  </section>
-
-  <!-- WhatsApp -->
-  <section>
-    <h2 class="reveal">Community</h2>
-    <div class="grid">
-      <div class="card reveal">
-        <h3>WhatsApp Support Group</h3>
-        <a href="https://chat.whatsapp.com/L6wlVwXs4cqEdvDdXs8pWO" target="_blank">Join Group</a>
-      </div>
-      <div class="card reveal">
-        <h3>WhatsApp Channel</h3>
-        <a href="https://whatsapp.com/channel/0029VbBz7he0G0XhFAUWt70P" target="_blank">Join Channel</a>
       </div>
     </div>
   </section>
 
-  <!-- Visitors -->
+  <!-- COMMUNITY -->
   <section>
-    <h2 class="reveal">Live Visitors</h2>
-    <div class="visitors reveal" id="visitors">0</div>
+    <h2 class="reveal from-left">Community</h2>
+    <p class="reveal from-right">
+      <a href="https://chat.whatsapp.com/L6wlVwXs4cqEdvDdXs8pWO" target="_blank">Join WhatsApp Group</a> | 
+      <a href="https://whatsapp.com/channel/0029VbBz7he0G0XhFAUWt70P" target="_blank">Join Channel</a>
+    </p>
   </section>
 
-  <!-- Footer -->
+  <!-- REAL VISITORS -->
+  <section>
+    <h2 class="reveal from-top">Live Visitors</h2>
+    <div class="visitors reveal from-bottom" id="visitors">0</div>
+  </section>
+
   <footer>
-    <p>© 2026 Glentek Kenya • GitHub: github.com/glentechkenya</p>
+    © 2026 Glentek Kenya • github.com/glentechkenya
   </footer>
 
   <script>
-    /* Reveal on scroll */
+    /* reveal observer */
     const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('show');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('show');
       });
     }, { threshold: 0.2 });
+    reveals.forEach(r => obs.observe(r));
 
-    reveals.forEach(r => observer.observe(r));
-
-    /* Fake live visitors (visual only) */
-    let count = Math.floor(Math.random() * 20) + 5;
-    const el = document.getElementById('visitors');
-    setInterval(() => {
-      count += Math.floor(Math.random() * 3);
-      el.textContent = count;
-    }, 3000);
+    /* REAL visitor counter using CountAPI */
+    fetch('https://api.countapi.xyz/hit/glentek-kenya/site')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('visitors').textContent = data.value;
+      })
+      .catch(() => {
+        document.getElementById('visitors').textContent = '—';
+      });
   </script>
 
 </body>
