@@ -9,24 +9,38 @@
       background: #0b1120;
       color: white;
       display: flex;
+      flex-direction: column;
       height: 100vh;
-      overflow: hidden;
     }
+
     header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
       background: #111827;
-      padding: 10px 20px;
+      padding: 12px 20px;
       font-weight: bold;
       color: #00ffcc;
-      z-index: 10;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
+
+    button {
+      padding: 8px 16px;
+      background: #00ffcc;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .main {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
     textarea {
       width: 50%;
-      padding: 60px 15px 15px 15px;
+      padding: 15px;
       background: #0f172a;
       color: #00ffcc;
       border: none;
@@ -35,31 +49,46 @@
       font-size: 14px;
       resize: none;
     }
-    iframe {
+
+    .right-panel {
       width: 50%;
+      display: flex;
+      flex-direction: column;
+      background: white;
+    }
+
+    iframe {
+      flex: 3;
       border: none;
       background: white;
-      margin-top: 50px;
     }
-    button {
-      position: fixed;
-      top: 10px;
-      right: 20px;
-      padding: 8px 18px;
-      background: #00ffcc;
-      border: none;
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 5px;
+
+    .console {
+      flex: 1;
+      background: black;
+      color: #00ff00;
+      font-family: monospace;
+      font-size: 13px;
+      padding: 10px;
+      overflow-y: auto;
+      border-top: 2px solid #111;
+    }
+
+    .console-title {
+      color: #00ffcc;
+      margin-bottom: 5px;
     }
   </style>
 </head>
 <body>
 
-<header>🚀 GlentechKenya Dev Builder</header>
-<button onclick="runCode()">▶ Run Code</button>
+<header>
+  🚀 GlentechKenya Dev Builder
+  <button onclick="runCode()">▶ Run Code</button>
+</header>
 
-<textarea id="codeArea">
+<div class="main">
+  <textarea id="codeArea">
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,23 +97,67 @@
   </style>
 </head>
 <body>
-  <h1>Welcome to GlentechKenya Builder 🌍</h1>
-  <p>Your code runs live here.</p>
+  <h1>GlentechKenya Dev Builder 🌍</h1>
+  <script>
+    console.log("Hello from GlentechKenya console!");
+  </script>
 </body>
 </html>
-</textarea>
+  </textarea>
 
-<iframe id="preview"></iframe>
+  <div class="right-panel">
+    <iframe id="preview"></iframe>
+    <div class="console" id="console">
+      <div class="console-title">Console Output:</div>
+    </div>
+  </div>
+</div>
 
 <script>
 function runCode() {
   const code = document.getElementById("codeArea").value;
   const previewFrame = document.getElementById("preview");
+  const consoleDiv = document.getElementById("console");
+
+  // Clear console
+  consoleDiv.innerHTML = '<div class="console-title">Console Output:</div>';
+
+  // Create a custom console log catcher
+  const consoleScript = `
+    <script>
+      const oldLog = console.log;
+      console.log = function(message) {
+        parent.postMessage({ type: 'log', message }, '*');
+        oldLog(message);
+      };
+      window.onerror = function(msg, url, line, col, error) {
+        parent.postMessage({ type: 'error', message: msg }, '*');
+      };
+    <\/script>
+  `;
+
+  const finalCode = code.replace("</body>", consoleScript + "</body>");
+
   const preview = previewFrame.contentWindow.document;
   preview.open();
-  preview.write(code);
+  preview.write(finalCode);
   preview.close();
 }
+
+// Listen for console messages from iframe
+window.addEventListener("message", function(event) {
+  const consoleDiv = document.getElementById("console");
+
+  if (event.data.type === "log") {
+    consoleDiv.innerHTML += `<div>> ${event.data.message}</div>`;
+  }
+
+  if (event.data.type === "error") {
+    consoleDiv.innerHTML += `<div style="color:red;">❌ ${event.data.message}</div>`;
+  }
+
+  consoleDiv.scrollTop = consoleDiv.scrollHeight;
+});
 </script>
 
 </body>
