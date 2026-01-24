@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>GlentechKenya Console</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       margin: 0;
@@ -23,9 +24,9 @@
     .console-title {
       color: #00ffcc;
       margin-bottom: 10px;
+      font-size: 16px;
     }
 
-    /* Hidden dev panel */
     .dev-panel {
       display: none;
       flex-direction: column;
@@ -35,7 +36,7 @@
     }
 
     textarea {
-      height: 200px;
+      height: 180px;
       background: #161b22;
       color: #00ffcc;
       border: 1px solid #30363d;
@@ -47,13 +48,12 @@
     }
 
     button {
-      padding: 6px 14px;
+      padding: 8px;
       background: #00ffcc;
       border: none;
       border-radius: 4px;
       font-weight: bold;
       cursor: pointer;
-      width: 120px;
     }
 
     iframe {
@@ -64,17 +64,17 @@
 <body>
 
 <div class="console" id="console">
-  <div class="console-title">GlentechKenya System Console</div>
+  <div class="console-title" id="title">GlentechKenya System Console</div>
   <div>> System ready...</div>
 </div>
 
-<!-- 🔒 Hidden Developer Panel -->
+<!-- Hidden Developer Panel -->
 <div class="dev-panel" id="devPanel">
   <textarea id="codeArea">
 <!DOCTYPE html>
 <html>
 <body style="background:black; color:lime; text-align:center;">
-  <h1>Secret GlentechKenya Dev Mode 🚀</h1>
+  <h1>GlentechKenya Dev Mode 🚀</h1>
   <script>
     console.log("Developer mode active");
   </script>
@@ -88,14 +88,21 @@
 
 <script>
 const consoleDiv = document.getElementById("console");
+const devPanel = document.getElementById("devPanel");
+const title = document.getElementById("title");
 
-// Secret keyboard shortcut to open dev panel
-document.addEventListener("keydown", function(e) {
-  if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "d") {
-    const panel = document.getElementById("devPanel");
-    panel.style.display = panel.style.display === "flex" ? "none" : "flex";
-    consoleDiv.innerHTML += "<div>> Dev panel toggled</div>";
+let tapCount = 0;
+
+// Secret mobile tap unlock
+title.addEventListener("click", () => {
+  tapCount++;
+  if (tapCount === 5) {
+    devPanel.style.display = devPanel.style.display === "flex" ? "none" : "flex";
+    consoleDiv.innerHTML += "<div>> Developer mode toggled</div>";
+    tapCount = 0;
   }
+
+  setTimeout(() => tapCount = 0, 2000); // reset if taps too slow
 });
 
 function runCode() {
