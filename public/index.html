@@ -47,7 +47,13 @@
       resize: none;
     }
 
+    .btn-row {
+      display: flex;
+      gap: 10px;
+    }
+
     button {
+      flex: 1;
       padding: 8px;
       background: #00ffcc;
       border: none;
@@ -81,7 +87,11 @@
 </body>
 </html>
   </textarea>
-  <button onclick="runCode()">▶ Run Code</button>
+
+  <div class="btn-row">
+    <button onclick="runCode()">▶ Run Code</button>
+    <button onclick="closeDev()">❌ Close</button>
+  </div>
 </div>
 
 <iframe id="preview"></iframe>
@@ -92,18 +102,27 @@ const devPanel = document.getElementById("devPanel");
 const title = document.getElementById("title");
 
 let tapCount = 0;
+let tapTimer;
 
-// Secret mobile tap unlock
-title.addEventListener("click", () => {
+// Tap 5 times to open dev panel
+title.addEventListener("touchstart", () => {
   tapCount++;
+
   if (tapCount === 5) {
-    devPanel.style.display = devPanel.style.display === "flex" ? "none" : "flex";
-    consoleDiv.innerHTML += "<div>> Developer mode toggled</div>";
+    devPanel.style.display = "flex";
+    consoleDiv.innerHTML += "<div>> Developer mode opened</div>";
     tapCount = 0;
   }
 
-  setTimeout(() => tapCount = 0, 2000); // reset if taps too slow
+  clearTimeout(tapTimer);
+  tapTimer = setTimeout(() => tapCount = 0, 2000);
 });
+
+// Close button function
+function closeDev() {
+  devPanel.style.display = "none";
+  consoleDiv.innerHTML += "<div>> Developer mode closed</div>";
+}
 
 function runCode() {
   const code = document.getElementById("codeArea").value;
