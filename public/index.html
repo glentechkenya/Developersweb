@@ -1,114 +1,106 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>GlentechKenya Dev Playground</title>
+  <title>GlentechKenya Console</title>
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0d1117;
-      color: white;
+      background: black;
+      color: #00ff00;
+      font-family: monospace;
       display: flex;
       flex-direction: column;
       height: 100vh;
     }
 
-    h2 {
-      margin: 10px 15px 5px;
+    .console {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+      border-top: 2px solid #003300;
+    }
+
+    .console-title {
       color: #00ffcc;
-      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    /* Hidden dev panel */
+    .dev-panel {
+      display: none;
+      flex-direction: column;
+      background: #0d1117;
+      padding: 10px;
+      border-top: 2px solid #00ffcc;
     }
 
     textarea {
-      margin: 0 15px;
-      height: 40%;
+      height: 200px;
       background: #161b22;
       color: #00ffcc;
       border: 1px solid #30363d;
       border-radius: 6px;
       padding: 10px;
       font-family: monospace;
-      font-size: 14px;
+      margin-bottom: 10px;
       resize: none;
-      outline: none;
-    }
-
-    .run-area {
-      margin: 10px 15px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
     }
 
     button {
-      padding: 8px 18px;
+      padding: 6px 14px;
       background: #00ffcc;
       border: none;
-      border-radius: 5px;
+      border-radius: 4px;
       font-weight: bold;
       cursor: pointer;
+      width: 120px;
     }
 
     iframe {
-      flex: 1;
-      margin: 0 15px;
-      border: 1px solid #30363d;
-      border-radius: 6px;
-      background: white;
-    }
-
-    .console {
-      height: 25%;
-      margin: 10px 15px 15px;
-      background: black;
-      border-radius: 6px;
-      padding: 10px;
-      font-family: monospace;
-      font-size: 13px;
-      overflow-y: auto;
-      border: 1px solid #30363d;
-    }
-
-    .console-title {
-      color: #00ffcc;
-      margin-bottom: 5px;
+      display: none;
     }
   </style>
 </head>
 <body>
 
-<h2>Paste your code here</h2>
-<textarea id="codeArea">
+<div class="console" id="console">
+  <div class="console-title">GlentechKenya System Console</div>
+  <div>> System ready...</div>
+</div>
+
+<!-- 🔒 Hidden Developer Panel -->
+<div class="dev-panel" id="devPanel">
+  <textarea id="codeArea">
 <!DOCTYPE html>
 <html>
 <body style="background:black; color:lime; text-align:center;">
-  <h1>Hello GlentechKenya 🚀</h1>
+  <h1>Secret GlentechKenya Dev Mode 🚀</h1>
   <script>
-    console.log("Console is connected!");
+    console.log("Developer mode active");
   </script>
 </body>
 </html>
-</textarea>
-
-<div class="run-area">
-  <span>You can run code here</span>
+  </textarea>
   <button onclick="runCode()">▶ Run Code</button>
 </div>
 
 <iframe id="preview"></iframe>
 
-<h2>Console</h2>
-<div class="console" id="console">
-  <div class="console-title">Output:</div>
-</div>
-
 <script>
+const consoleDiv = document.getElementById("console");
+
+// Secret keyboard shortcut to open dev panel
+document.addEventListener("keydown", function(e) {
+  if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "d") {
+    const panel = document.getElementById("devPanel");
+    panel.style.display = panel.style.display === "flex" ? "none" : "flex";
+    consoleDiv.innerHTML += "<div>> Dev panel toggled</div>";
+  }
+});
+
 function runCode() {
   const code = document.getElementById("codeArea").value;
   const previewFrame = document.getElementById("preview");
-  const consoleDiv = document.getElementById("console");
-
-  consoleDiv.innerHTML = '<div class="console-title">Output:</div>';
 
   const consoleScript = `
     <script>
@@ -132,16 +124,12 @@ function runCode() {
 }
 
 window.addEventListener("message", function(event) {
-  const consoleDiv = document.getElementById("console");
-
   if (event.data.type === "log") {
     consoleDiv.innerHTML += `<div>> ${event.data.message}</div>`;
   }
-
   if (event.data.type === "error") {
     consoleDiv.innerHTML += `<div style="color:red;">❌ ${event.data.message}</div>`;
   }
-
   consoleDiv.scrollTop = consoleDiv.scrollHeight;
 });
 </script>
