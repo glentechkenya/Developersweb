@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>GlentechKenya</title>
+  <title>GlentechKenya System</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -14,24 +14,21 @@
       height: 100vh;
     }
 
-    /* Top Online Bar */
     .topbar {
       background: #001a00;
       color: #00ff00;
-      padding: 10px;
+      padding: 12px;
       text-align: center;
       font-weight: bold;
       border-bottom: 2px solid #00ff00;
     }
 
-    /* Live Site Area */
-    iframe {
+    #siteFrame {
       flex: 1;
       border: none;
       background: white;
     }
 
-    /* Hidden Editor */
     .dev-panel {
       display: none;
       background: #0d1117;
@@ -48,18 +45,19 @@
       border-radius: 6px;
       padding: 10px;
       font-family: monospace;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       resize: none;
     }
 
     .btn-row {
       display: flex;
       gap: 10px;
+      flex-wrap: wrap;
     }
 
     button {
       flex: 1;
-      padding: 8px;
+      padding: 10px;
       background: #00ffcc;
       border: none;
       border-radius: 4px;
@@ -75,7 +73,7 @@
 <iframe id="siteFrame"></iframe>
 
 <div class="dev-panel" id="devPanel">
-  <textarea id="codeArea"></textarea>
+  <textarea id="codeArea" placeholder="Paste your HTML website code here..."></textarea>
   <div class="btn-row">
     <button onclick="runCode()">▶ Run Code</button>
     <button onclick="closeDev()">❌ Close</button>
@@ -91,18 +89,16 @@ const frame = document.getElementById("siteFrame");
 let tapCount = 0;
 let tapTimer;
 
-// Load saved site automatically
+// Load saved site
 const savedCode = localStorage.getItem("glentechSite");
-if (savedCode) {
-  frame.srcdoc = savedCode;
-}
+frame.srcdoc = savedCode || "<h1 style='text-align:center;font-family:Arial'>🚀 GlentechKenya Live System</h1>";
 
 // Tap top bar 5 times to open editor
 topbar.addEventListener("touchstart", () => {
   tapCount++;
   if (tapCount === 5) {
     devPanel.style.display = "block";
-    codeArea.value = localStorage.getItem("glentechSite") || "<h1>Build your site here</h1>";
+    codeArea.value = savedCode || "";
     tapCount = 0;
   }
   clearTimeout(tapTimer);
@@ -116,7 +112,8 @@ function closeDev() {
 function runCode() {
   const code = codeArea.value;
   localStorage.setItem("glentechSite", code);
-  frame.srcdoc = code; // Updates live site without refresh
+  frame.srcdoc = code;
+  devPanel.style.display = "none";
 }
 </script>
 
