@@ -6,28 +6,37 @@
   <style>
     body {
       margin: 0;
+      font-family: Arial, sans-serif;
       background: black;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    /* Top Online Bar */
+    .topbar {
+      background: #001a00;
       color: #00ff00;
-      font-family: monospace;
-      padding: 20px;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+      border-bottom: 2px solid #00ff00;
     }
 
-    .console-title {
-      color: #00ffcc;
-      font-size: 18px;
-      margin-bottom: 10px;
+    /* Live Site Area */
+    iframe {
+      flex: 1;
+      border: none;
+      background: white;
     }
 
+    /* Hidden Editor */
     .dev-panel {
       display: none;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
       background: #0d1117;
       padding: 10px;
       border-top: 2px solid #00ffcc;
-      z-index: 9999;
     }
 
     textarea {
@@ -61,21 +70,12 @@
 </head>
 <body>
 
-<div class="console-title" id="title">GlentechKenya System Console</div>
-<div>> System ready...</div>
+<div class="topbar" id="topbar">GlentechKenya ● ONLINE</div>
 
-<!-- Hidden Developer Panel -->
+<iframe id="siteFrame"></iframe>
+
 <div class="dev-panel" id="devPanel">
-  <textarea id="codeArea">
-<!DOCTYPE html>
-<html>
-<head><title>New Glentech Page</title></head>
-<body style="background:black; color:lime; text-align:center;">
-  <h1>GlentechKenya Updated Live 🚀</h1>
-</body>
-</html>
-  </textarea>
-
+  <textarea id="codeArea"></textarea>
   <div class="btn-row">
     <button onclick="runCode()">▶ Run Code</button>
     <button onclick="closeDev()">❌ Close</button>
@@ -83,21 +83,28 @@
 </div>
 
 <script>
+const topbar = document.getElementById("topbar");
 const devPanel = document.getElementById("devPanel");
-const title = document.getElementById("title");
+const codeArea = document.getElementById("codeArea");
+const frame = document.getElementById("siteFrame");
 
 let tapCount = 0;
 let tapTimer;
 
-// Tap 5 times to open dev panel
-title.addEventListener("touchstart", () => {
-  tapCount++;
+// Load saved site automatically
+const savedCode = localStorage.getItem("glentechSite");
+if (savedCode) {
+  frame.srcdoc = savedCode;
+}
 
+// Tap top bar 5 times to open editor
+topbar.addEventListener("touchstart", () => {
+  tapCount++;
   if (tapCount === 5) {
     devPanel.style.display = "block";
+    codeArea.value = localStorage.getItem("glentechSite") || "<h1>Build your site here</h1>";
     tapCount = 0;
   }
-
   clearTimeout(tapTimer);
   tapTimer = setTimeout(() => tapCount = 0, 2000);
 });
@@ -106,12 +113,10 @@ function closeDev() {
   devPanel.style.display = "none";
 }
 
-// THIS replaces the entire page with your new code
 function runCode() {
-  const code = document.getElementById("codeArea").value;
-  document.open();
-  document.write(code);
-  document.close();
+  const code = codeArea.value;
+  localStorage.setItem("glentechSite", code);
+  frame.srcdoc = code; // Updates live site without refresh
 }
 </script>
 
