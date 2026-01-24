@@ -1,77 +1,72 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>GlentechKenya Dev Builder</title>
+  <title>GlentechKenya Dev Playground</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #0b1120;
+      background: #0d1117;
       color: white;
       display: flex;
       flex-direction: column;
       height: 100vh;
     }
 
-    header {
-      background: #111827;
-      padding: 12px 20px;
-      font-weight: bold;
+    h2 {
+      margin: 10px 15px 5px;
       color: #00ffcc;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    button {
-      padding: 8px 16px;
-      background: #00ffcc;
-      border: none;
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-
-    .main {
-      display: flex;
-      flex: 1;
-      overflow: hidden;
+      font-size: 16px;
     }
 
     textarea {
-      width: 50%;
-      padding: 15px;
-      background: #0f172a;
+      margin: 0 15px;
+      height: 40%;
+      background: #161b22;
       color: #00ffcc;
-      border: none;
-      outline: none;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      padding: 10px;
       font-family: monospace;
       font-size: 14px;
       resize: none;
+      outline: none;
     }
 
-    .right-panel {
-      width: 50%;
+    .run-area {
+      margin: 10px 15px;
       display: flex;
-      flex-direction: column;
-      background: white;
+      align-items: center;
+      gap: 10px;
+    }
+
+    button {
+      padding: 8px 18px;
+      background: #00ffcc;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
     }
 
     iframe {
-      flex: 3;
-      border: none;
+      flex: 1;
+      margin: 0 15px;
+      border: 1px solid #30363d;
+      border-radius: 6px;
       background: white;
     }
 
     .console {
-      flex: 1;
+      height: 25%;
+      margin: 10px 15px 15px;
       background: black;
-      color: #00ff00;
+      border-radius: 6px;
+      padding: 10px;
       font-family: monospace;
       font-size: 13px;
-      padding: 10px;
       overflow-y: auto;
-      border-top: 2px solid #111;
+      border: 1px solid #30363d;
     }
 
     .console-title {
@@ -82,35 +77,29 @@
 </head>
 <body>
 
-<header>
-  🚀 GlentechKenya Dev Builder
-  <button onclick="runCode()">▶ Run Code</button>
-</header>
-
-<div class="main">
-  <textarea id="codeArea">
+<h2>Paste your code here</h2>
+<textarea id="codeArea">
 <!DOCTYPE html>
 <html>
-<head>
-  <style>
-    body { background: black; color: lime; text-align: center; font-family: Arial; }
-  </style>
-</head>
-<body>
-  <h1>GlentechKenya Dev Builder 🌍</h1>
+<body style="background:black; color:lime; text-align:center;">
+  <h1>Hello GlentechKenya 🚀</h1>
   <script>
-    console.log("Hello from GlentechKenya console!");
+    console.log("Console is connected!");
   </script>
 </body>
 </html>
-  </textarea>
+</textarea>
 
-  <div class="right-panel">
-    <iframe id="preview"></iframe>
-    <div class="console" id="console">
-      <div class="console-title">Console Output:</div>
-    </div>
-  </div>
+<div class="run-area">
+  <span>You can run code here</span>
+  <button onclick="runCode()">▶ Run Code</button>
+</div>
+
+<iframe id="preview"></iframe>
+
+<h2>Console</h2>
+<div class="console" id="console">
+  <div class="console-title">Output:</div>
 </div>
 
 <script>
@@ -119,10 +108,8 @@ function runCode() {
   const previewFrame = document.getElementById("preview");
   const consoleDiv = document.getElementById("console");
 
-  // Clear console
-  consoleDiv.innerHTML = '<div class="console-title">Console Output:</div>';
+  consoleDiv.innerHTML = '<div class="console-title">Output:</div>';
 
-  // Create a custom console log catcher
   const consoleScript = `
     <script>
       const oldLog = console.log;
@@ -130,7 +117,7 @@ function runCode() {
         parent.postMessage({ type: 'log', message }, '*');
         oldLog(message);
       };
-      window.onerror = function(msg, url, line, col, error) {
+      window.onerror = function(msg) {
         parent.postMessage({ type: 'error', message: msg }, '*');
       };
     <\/script>
@@ -144,7 +131,6 @@ function runCode() {
   preview.close();
 }
 
-// Listen for console messages from iframe
 window.addEventListener("message", function(event) {
   const consoleDiv = document.getElementById("console");
 
